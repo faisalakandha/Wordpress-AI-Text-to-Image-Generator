@@ -21,12 +21,14 @@ function texttoimg()
 
         <script type="text/javascript">
             $("document").ready(function() {
-                $("#textSubmit").click(function() {
-
-                    var data = {
-                        imgtext: $("#textCommand").val()
+                var data = {
+                        imgtext: '',
+                        king: '',
                     };
-                    console.log(data.imgtext);
+                    
+                $("#textSubmit").click(function() {
+                    data.imgtext = $("#textCommand").val();
+                    console.log(data);
 
                     async function postData(data) {
 
@@ -40,6 +42,7 @@ function texttoimg()
                             })
                             .then((response) => response.json())
                             .then(function(data) {
+                                console.log(data);
                                 $("#img-content").attr("src", data);
                                 $("#img-link").attr("href", data);
                             })
@@ -53,8 +56,9 @@ function texttoimg()
                 });
 
                 $("#panda").click(function() 
-                { 
-                    console.log("Panda");
+                {   
+                    data.king = 'panda';
+                    console.log("Clicked :", data.king);
                 });
 
                 $("#flower").click(function() 
