@@ -48,7 +48,7 @@ function sendimggeneratorData($req)
     $apiKey = "d3f8930c-ddfb-49d8-b55e-a0f5a5d49f16";
     $parameters = $req->get_params();
     $imgtext = $parameters["imgtext"];
-    $option = $parameters["option"];
+    $option = $parameters["king"];
 
     $ch = curl_init();
     $endpoint = GetApiEndpoint($option);

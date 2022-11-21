@@ -22,81 +22,87 @@ function texttoimg()
         <script type="text/javascript">
             $("document").ready(function() {
 
+                    var data = {
+                        imgtext: '',
+                        king: '',
+                    };
+                    
                 $("#textSubmit").click(function() {
-                    // data.imgtext = $("#textCommand").val();
+                    data.imgtext = $("#textCommand").val();
+                    console.log(data);
 
                     async function postData(data) {
 
-                        var data = {
-                            imgtext: $("#textCommand").val()
-                        };
-                        console.log(data.imgtext);
-
-                        async function postData(data) {
-
-                            return fetch('http://localhost/wp-json/imggenerator/v1/imggenerated', {
-                                    method: 'POST', // or 'PUT',
-                                    mode: 'cors', // no-cors, *cors, same-origin
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify(data),
-                                })
-                                .then((response) => response.json())
-                                .then(function(data) {
-                                    $("#img-content").attr("src", data);
-                                    $("#img-link").attr("href", data);
-                                })
-                                .catch((error) => {
-                                    console.error('Error:', error);
-                                });
-                        }
-
-                        postData(data);
-
+                        return fetch('http://localhost/wp-json/imggenerator/v1/imggenerated', {
+                                method: 'POST', // or 'PUT',
+                                mode: 'cors', // no-cors, *cors, same-origin
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                            })
+                            .then(function(response){  return response.json()})
+                            .then(function(data) {
+                                console.log(data);
+                                $("#img-content").attr("src", data);
+                                $("#img-link").attr("href", data);
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
                     }
+
+                    postData(data);
+
                 });
 
                 $("#panda").click(function() {
                     $("#textHolder").text("This option will generate an image of a cute animal.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
+                    data.king = 'panda';
                 });
 
                 $("#flower").click(function() {
                     $("#textHolder").text("This option will generate an abstract painting.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
+                    data.king = 'flower';
                 });
 
                 $("#3dObjectGenerator").click(function() {
                     $("#textHolder").text("This option will generate a highly detailed 3d image of any object.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
+                    data.king = '3dObjectGenerator';
                 });
 
                 $("#contemporary").click(function() {
                     $("#textHolder").text("This option will generate contemporary architecture concept image.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
+                    data.king = 'contemporary';
                 });
 
                 $("#surreal").click(function() {
                     $("#textHolder").text("This option will generate detailed surreal graphics.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
+                    data.king = '';
                 });
 
                 $("#oldStyle").click(function() {
                     $("#textHolder").text("This option will generate an image in 18th century drawing style.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
+                    data.king = 'surreal';
                 });
 
                 $("#fantasy").click(function() {
                     $("#textHolder").text("This option will generate an image in fantasy style.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
+                    data.king = 'fantasy';
                 });
             });
         </script>
@@ -137,55 +143,57 @@ function texttoimg()
             <!-- Page Content -->
             <div class="container">
 
-                <h6 class="fw-light text-center text-lg-start mt-4 mb-0">Choose a style</h6>
+                <h6 class="fw-light text-center text-lg-start mt-4 mb-0">Select a style from below:</h6>
 
                 <hr class="mt-2">
                 <p id="textHolder" class="fw-light">A.I. Will Generate An Image According To Your Chosen Style From Below</p>
                 <div class="row text-center text-lg-start">
 
                     <div id="panda" class="col-lg-3 col-md-4 col-6 option">
-                        <a href="#" class="d-block mb-4 h-100">
+                        
                             <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/panda.jpeg'; ?>" alt="">
-                        </a>
+                        
                     </div>
                     <div id="flower" class="col-lg-3 col-md-4 col-6 option">
-                        <a href="#" class="d-block mb-4 h-100">
+                        
                             <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/abstracttt.jpeg'; ?>" alt="">
-                        </a>
+                        
                     </div>
                     <div id="3dObjectGenerator" class="col-lg-3 col-md-4 col-6 option">
-                        <a href="#" class="d-block mb-4 h-100">
+                        
                             <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/cmpre.jpeg'; ?>" alt="">
-                        </a>
+                        
                     </div>
                     <div id="contemporary" class="col-lg-3 col-md-4 col-6 option">
-                        <a href="#" class="d-block mb-4 h-100">
+                        
                             <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/contemporary.png'; ?>" alt="">
-                        </a>
+                        
                     </div>
                     <div id="surreal" class="col-lg-3 col-md-4 col-6 option">
-                        <a href="#" class="d-block mb-4 h-100">
+                        
                             <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/cupcoff.jpeg'; ?>" alt="">
-                        </a>
+                        
                     </div>
                     <div id="oldStyle" class="col-lg-3 col-md-4 col-6 option">
-                        <a href="#" class="d-block mb-4 h-100">
+                        
                             <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/old_skool.jpeg'; ?>" alt="">
-                        </a>
+                        
                     </div>
                     <div id="fantasy" class="col-lg-3 col-md-4 col-6 option">
-                        <a href="#" class="d-block mb-4 h-100">
+                        
                             <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/sf_fantasy.jpeg'; ?>" alt="">
-                        </a>
+                        
                     </div>
 
                 </div>
 
             </div>
+            <center>
             <div id="img-container">
                 <h5>Your Image Will be Shown Here:</h5>
-                <a id="img-link"><img style="height: 70%; width: 70%;" id="img-content" /></a>
+                <a id="img-link"><img style="height: 70%; width: 70%;" id="img-content" alt="Your Image"/></a>
             </div>
+            </center>
         </div>
     </body>
 
