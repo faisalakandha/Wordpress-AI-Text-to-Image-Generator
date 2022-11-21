@@ -22,6 +22,7 @@ function texttoimg()
         <script type="text/javascript">
             var globe = 0;
             var myInterval;
+            var siteUrl = "<?php get_site_url(); ?>";
 
             $("document").ready(function() {
 
@@ -46,7 +47,7 @@ function texttoimg()
                             CreateLoading();
                         }, 500)
 
-                        return fetch('http://localhost/wp-json/imggenerator/v1/imggenerated', {
+                        return fetch(siteUrl + '/wp-json/imggenerator/v1/imggenerated', {
                                 method: 'POST', // or 'PUT',
                                 mode: 'cors', // no-cors, *cors, same-origin
                                 headers: {
