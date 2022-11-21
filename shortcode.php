@@ -21,7 +21,12 @@ function texttoimg()
 
         <script type="text/javascript">
             $("document").ready(function() {
+
+
+                    var data = {
+
                 var data = {
+
                         imgtext: '',
                         king: '',
                     };
@@ -40,7 +45,7 @@ function texttoimg()
                                 },
                                 body: JSON.stringify(data),
                             })
-                            .then((response) => response.json())
+                            .then(function(response){  return response.json()})
                             .then(function(data) {
                                 console.log(data);
                                 $("#img-content").attr("src", data);
@@ -55,40 +60,60 @@ function texttoimg()
 
                 });
 
+
+                $("#panda").click(function() {
+                    $("#textHolder").text("This option will generate an image of a cute animal.");
+                    $(".option").removeClass("active");
+                    $(this).addClass("active");
+                    data.king = 'panda';
+
                 $("#panda").click(function() 
                 {   
                     data.king = 'panda';
                     console.log("Clicked :", data.king);
+
                 });
 
-                $("#flower").click(function() 
-                { 
-                    console.log("Flower");
+                $("#flower").click(function() {
+                    $("#textHolder").text("This option will generate an abstract painting.");
+                    $(".option").removeClass("active");
+                    $(this).addClass("active");
+                    data.king = 'flower';
                 });
 
-                $("#3dObjectGenerator").click(function() 
-                { 
-                    console.log("3d Object");
+                $("#3dObjectGenerator").click(function() {
+                    $("#textHolder").text("This option will generate a highly detailed 3d image of any object.");
+                    $(".option").removeClass("active");
+                    $(this).addClass("active");
+                    data.king = '3dObjectGenerator';
                 });
 
-                $("#contemporary").click(function() 
-                { 
-                    console.log("Contemporary");
+                $("#contemporary").click(function() {
+                    $("#textHolder").text("This option will generate contemporary architecture concept image.");
+                    $(".option").removeClass("active");
+                    $(this).addClass("active");
+                    data.king = 'contemporary';
                 });
 
-                $("#surreal").click(function() 
-                { 
-                    console.log("surreal");
+                $("#surreal").click(function() {
+                    $("#textHolder").text("This option will generate detailed surreal graphics.");
+                    $(".option").removeClass("active");
+                    $(this).addClass("active");
+                    data.king = '';
                 });
 
-                $("#oldStyle").click(function() 
-                { 
-                    console.log("Old style");
+                $("#oldStyle").click(function() {
+                    $("#textHolder").text("This option will generate an image in 18th century drawing style.");
+                    $(".option").removeClass("active");
+                    $(this).addClass("active");
+                    data.king = 'surreal';
                 });
 
-                $("#fantasy").click(function() 
-                { 
-                    console.log("Fantasy");
+                $("#fantasy").click(function() {
+                    $("#textHolder").text("This option will generate an image in fantasy style.");
+                    $(".option").removeClass("active");
+                    $(this).addClass("active");
+                    data.king = 'fantasy';
                 });
             });
         </script>
@@ -111,69 +136,75 @@ function texttoimg()
                 display: flex;
                 flex-direction: column;
             }
+
+            .active {
+                border: solid 2px #0d6efd;
+            }
         </style>
     </head>
 
     <body>
         <div id="container">
             <div class="flex-container">
-                <h2 style="text-align: center; margin-bottom: 2px;">AI Text To Image Generator</h2>
-                <hr>
-                <textarea id="textCommand" style="height: 200px; outline: none; border: solid 3px #000; border-radius:5px;"></textarea><br>
+                <h2 style="text-align: center; margin-bottom: 2px; font-family: Times New Roman, Times, serif;">AI Text To Image Generator</h2>
+                <hr style="color: #0d6efd">
+                <textarea id="textCommand" style="height: 200px; outline: none; border: solid 2px #0d6efd; border-radius:8px;"></textarea><br>
                 <button id="textSubmit" class="btn btn-primary" type="submit">Generate Image</button>
             </div>
             <!-- Page Content -->
             <div class="container">
 
-                <h6 class="fw-light text-center text-lg-start mt-4 mb-0">Choose a style</h6>
+                <h6 class="fw-light text-center text-lg-start mt-4 mb-0">Select a style from below:</h6>
 
-                <hr class="mt-2 mb-5">
-
+                <hr class="mt-2">
+                <p id="textHolder" class="fw-light">A.I. Will Generate An Image According To Your Chosen Style From Below</p>
                 <div class="row text-center text-lg-start">
 
-                    <div id="panda" class="col-lg-3 col-md-4 col-6">
-                        <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url( __FILE__ ) . 'assets/panda.jpeg';?>"  alt="">
-                        </a>
+                    <div id="panda" class="col-lg-3 col-md-4 col-6 option">
+                        
+                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/panda.jpeg'; ?>" alt="">
+                        
                     </div>
-                    <div id="flower" class="col-lg-3 col-md-4 col-6">
-                        <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url( __FILE__ ) . 'assets/abstracttt.jpeg';?>" alt="">
-                        </a>
+                    <div id="flower" class="col-lg-3 col-md-4 col-6 option">
+                        
+                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/abstracttt.jpeg'; ?>" alt="">
+                        
                     </div>
-                    <div id="3dObjectGenerator" class="col-lg-3 col-md-4 col-6">
-                        <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url( __FILE__ ) . 'assets/cmpre.jpeg';?>" alt="">
-                        </a>
+                    <div id="3dObjectGenerator" class="col-lg-3 col-md-4 col-6 option">
+                        
+                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/cmpre.jpeg'; ?>" alt="">
+                        
                     </div>
-                    <div id="contemporary" class="col-lg-3 col-md-4 col-6">
-                        <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url( __FILE__ ) . 'assets/contemporary.png';?>" alt="">
-                        </a>
+                    <div id="contemporary" class="col-lg-3 col-md-4 col-6 option">
+                        
+                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/contemporary.png'; ?>" alt="">
+                        
                     </div>
-                    <div id="surreal" class="col-lg-3 col-md-4 col-6">
-                        <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url( __FILE__ ) . 'assets/cupcoff.jpeg';?>" alt="">
-                        </a>
+                    <div id="surreal" class="col-lg-3 col-md-4 col-6 option">
+                        
+                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/cupcoff.jpeg'; ?>" alt="">
+                        
                     </div>
-                    <div id="oldStyle" class="col-lg-3 col-md-4 col-6">
-                        <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url( __FILE__ ) . 'assets/old_skool.jpeg';?>" alt="">
-                        </a>
+                    <div id="oldStyle" class="col-lg-3 col-md-4 col-6 option">
+                        
+                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/old_skool.jpeg'; ?>" alt="">
+                        
                     </div>
-                    <div id="fantasy" class="col-lg-3 col-md-4 col-6">
-                        <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url( __FILE__ ) . 'assets/sf_fantasy.jpeg';?>" alt="">
-                        </a>
+                    <div id="fantasy" class="col-lg-3 col-md-4 col-6 option">
+                        
+                            <img class="img-fluid img-thumbnail" src="<?php echo plugin_dir_url(__FILE__) . 'assets/sf_fantasy.jpeg'; ?>" alt="">
+                        
                     </div>
 
                 </div>
 
             </div>
+            <center>
             <div id="img-container">
                 <h5>Your Image Will be Shown Here:</h5>
-                <a id="img-link"><img style="height: 70%; width: 70%;" id="img-content" /></a>
+                <a id="img-link"><img style="height: 70%; width: 70%;" id="img-content" alt="Your Image"/></a>
             </div>
+            </center>
         </div>
     </body>
 
