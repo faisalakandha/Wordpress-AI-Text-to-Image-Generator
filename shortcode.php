@@ -22,7 +22,11 @@ function texttoimg()
         <script type="text/javascript">
             $("document").ready(function() {
 
+
                     var data = {
+
+                var data = {
+
                         imgtext: '',
                         king: '',
                     };
@@ -56,11 +60,18 @@ function texttoimg()
 
                 });
 
+
                 $("#panda").click(function() {
                     $("#textHolder").text("This option will generate an image of a cute animal.");
                     $(".option").removeClass("active");
                     $(this).addClass("active");
                     data.king = 'panda';
+
+                $("#panda").click(function() 
+                {   
+                    data.king = 'panda';
+                    console.log("Clicked :", data.king);
+
                 });
 
                 $("#flower").click(function() {
