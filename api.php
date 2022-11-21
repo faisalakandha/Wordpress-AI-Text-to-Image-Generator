@@ -72,7 +72,6 @@ function sendimggeneratorData($req)
     $res_json = json_decode($result);
 
     return $res_json->output_url;
-    // return $parameters["imgtext"];
 }
 
 
