@@ -42,6 +42,7 @@ function texttoimg()
 
                     async function postData(data) {
                         $("#app-container").css("opacity", 0.3);
+                        var myInterval = 0;
                         myInterval = setInterval(() => {
                             globe += 1;
                             CreateLoading();
@@ -59,7 +60,8 @@ function texttoimg()
                                 return response.json()
                             })
                             .then(function(data) {
-                                console.log(data);
+                                $image = $("#img-content");
+                                $image.removeAttr('src');
                                 $("#img-content").attr("src", data);
                                 $("#img-link").attr("href", data);
                                 $("#app-container").css("opacity", 1);
@@ -212,7 +214,7 @@ function texttoimg()
                 <center>
                     <div id="img-container">
                         <h5>Your Image Will be Shown Here:</h5>
-                        <a id="img-link"><img style="height: 70%; width: 70%;" id="img-content" alt="Your Image" /></a>
+                        <a id="img-link"><img src="https://static01.nyt.com/images/2022/09/01/business/00roose-1/merlin_212276709_3104aef5-3dc4-4288-bb44-9e5624db0b37-superJumbo.jpg" style="height: 70%; width: 70%;" id="img-content" alt="Your Image" /></a>
                     </div>
                 </center>
             </div>
