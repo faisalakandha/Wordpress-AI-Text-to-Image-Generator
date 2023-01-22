@@ -49,11 +49,13 @@ function texttoimg()
                         }, 500)
 
                         return fetch(siteUrl + '/wp-json/imggenerator/v1/imggenerated', {
-                                method: 'POST', // or 'PUT',
-                                mode: 'cors', // no-cors, *cors, same-origin
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
+                        method: 'POST', // or 'PUT',
+                        mode: 'cors', // no-cors, *cors, same-origin
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-WP-Nonce' : "<?php echo wp_create_nonce('wp_rest') ?>"
+                        },
                                 body: JSON.stringify(data),
                             })
                             .then(function(response) {
