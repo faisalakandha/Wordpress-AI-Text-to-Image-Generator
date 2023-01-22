@@ -6,7 +6,7 @@ add_action('rest_api_init', function () {
         'methods' => 'POST',
         'callback' => 'sendimggeneratorData',
         'args' => array(),
-        'permission_callback' => '__return_true'
+        'permission_callback' => 'IsUserAdmin'
     ));
 });
 
@@ -72,6 +72,11 @@ function sendimggeneratorData($req)
     $res_json = json_decode($result);
 
     return $res_json->output_url;
+}
+
+function IsUserAdmin($request) 
+{ 
+    return current_user_can('manage_options');
 }
 
 
