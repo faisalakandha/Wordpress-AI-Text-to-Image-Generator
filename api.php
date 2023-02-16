@@ -15,28 +15,28 @@ function GetApiEndpoint($option)
     $endpoint = '';
     switch ($option) {
         case 'panda':
-          $endpoint = 'https://api.deepai.org/api/cute-creature-generator';
+          $endpoint = 'https://{IP_ADDRESS}/api/cute-creature-generator';
           break;
         case 'flower':
-          $endpoint = 'https://api.deepai.org/api/abstract-painting-generator';
+          $endpoint = 'https://{IP_ADDRESS}/api/abstract-painting-generator';
           break;
         case 'contemporary':
-          $endpoint = 'https://api.deepai.org/api/contemporary-architecture-generator';
+          $endpoint = 'https://{IP_ADDRESS}/api/contemporary-architecture-generator';
           break;
         case 'surreal':
-          $endpoint = 'https://api.deepai.org/api/surreal-graphics-generator';
+          $endpoint = 'https://{IP_ADDRESS}/api/surreal-graphics-generator';
           break; 
         case 'oldStyle':
-          $endpoint = 'https://api.deepai.org/api/old-style-generator';
+          $endpoint = 'https://{IP_ADDRESS}/api/old-style-generator';
           break; 
         case 'fantasy':
-          $endpoint = 'https://api.deepai.org/api/fantasy-world-generator';
+          $endpoint = 'https://{IP_ADDRESS}/api/fantasy-world-generator';
           break; 
         case '3dObjectGenerator':
-          $endpoint = 'https://api.deepai.org/api/3d-objects-generator';
+          $endpoint = 'https://{IP_ADDRESS}/api/3d-objects-generator';
           break;       
         default:
-          $endpoint = 'https://api.deepai.org/api/text2img';
+          $endpoint = 'https://{IP_ADDRESS}/api/text2img';
       }
 
     return $endpoint;
@@ -45,7 +45,6 @@ function GetApiEndpoint($option)
 
 function sendimggeneratorData($req)
 {
-    $apiKey = "d3f8930c-ddfb-49d8-b55e-a0f5a5d49f16";
     $parameters = $req->get_params();
     $imgtext = $parameters["imgtext"];
     $option = $parameters["king"];
